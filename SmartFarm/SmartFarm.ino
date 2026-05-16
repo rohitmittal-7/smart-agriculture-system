@@ -3,12 +3,12 @@
 #include "DHT.h"
 
 //================== WiFi ==================//
-#define WIFI_SSID "OnePlus Nord CE4"
-#define WIFI_PASSWORD "1234554321"
+#define WIFI_SSID "Your wifi name"
+#define WIFI_PASSWORD "Your wifi password"
 
 //================== Firebase ==================//
-#define DATABASE_URL "https://smart-agriculture-7888c-default-rtdb.asia-southeast1.firebasedatabase.app/"
-const char* FIREBASE_SECRET = "8yfvQ2MlgDVXQUpoiC71yj0G4WrMdnxs1DT1RXHQ";
+#define DATABASE_URL "Your database url"
+const char* FIREBASE_SECRET = "Your database secret";
 
 FirebaseData fbdo;
 FirebaseAuth auth;
