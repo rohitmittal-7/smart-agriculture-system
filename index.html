@@ -116,14 +116,14 @@
     import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyD2sF7atiLJ68r3Gdp_83dVD1KEtshb7jE",
-      authDomain: "smart-agriculture-7888c.firebaseapp.com",
-      databaseURL: "https://smart-agriculture-7888c-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "smart-agriculture-7888c",
-      storageBucket: "smart-agriculture-7888c.firebasestorage.app",
-      messagingSenderId: "198935829215",
-      appId: "1:198935829215:web:00b4d48e72612f500ae76a"
-    };
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
