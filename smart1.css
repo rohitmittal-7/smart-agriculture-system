@@ -1,0 +1,306 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #f0f9ff, #e6ffe6);
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: #2e8b57;
+  color: white;
+  padding: 25px 0;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: #f4f4f4;
+  text-decoration: none;
+  margin: 0 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background: #3cb371;
+  color: #fff;
+}
+
+/* Sections */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+h2 {
+  text-align: center;
+  color: #2e8b57;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+h4 {
+  text-align: center;
+  color: #555;
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+}
+
+p, ol {
+  font-size: 1.1rem;
+  color: #333;
+  padding: 0 15px;
+  margin-bottom: 20px;
+}
+
+ol {
+  padding-left: 40px;
+  list-style-type: decimal;
+}
+
+/* Pump Control Box */
+.pump-control {
+  text-align: center;
+  margin: 40px auto;
+  padding: 25px;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  width: 350px;
+  transition: 0.3s;
+}
+
+.pump-control:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.pump-control h3 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+/* Pump Buttons */
+.pump-btn {
+  padding: 14px 32px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  outline: none;
+}
+
+.pump-btn.on {
+  background: #28a745;
+  box-shadow: 0 4px 10px rgba(40,167,69,0.5);
+}
+
+.pump-btn.on:hover {
+  background: #218838;
+  transform: scale(1.08);
+}
+
+.pump-btn.off {
+  background: #dc3545;
+  box-shadow: 0 4px 10px rgba(220,53,69,0.5);
+}
+
+.pump-btn.off:hover {
+  background: #c82333;
+  transform: scale(1.08);
+}
+
+/* Pump Status Text */
+#pumpStatus {
+  font-weight: bold;
+  font-size: 18px;
+  color: #007bff;
+}
+
+/* Sensor Box */
+
+.sensor-box {
+  width: 350px;                /* same as pump-control */
+  padding: 25px;               /* similar padding */
+  text-align: center;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);  /* same style as pump box */
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 40px auto;
+  font-size: 16px;
+}
+
+.sensor-box:hover {
+  transform: translateY(-4px);   /* subtle lift like pump box */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);  /* stronger shadow on hover */
+}
+
+/* Contact Form */
+#contact form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+#contact input, #contact textarea {
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: #2e8b57;
+  outline: none;
+}
+
+#contact button {
+  padding: 12px;
+  background: #2e8b57;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#contact button:hover {
+  background: #256d48;
+}
+
+/* Footer */
+footer {
+  background: #2e8b57;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.95rem;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav a {
+    display: inline-block;
+    margin: 8px 10px;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  #contact form {
+    width: 90%;
+  }
+}
+.project-description img {
+      max-width: 90%;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      display: block;
+      margin: 20px auto;
+    }
+    .project-description {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+/* Toggle Switch Design */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* When Checked */
+input:checked + .slider {
+  background-color: #28a745;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+

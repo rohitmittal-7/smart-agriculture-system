@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Irrigation System</title> 
+  <link rel="stylesheet" href="smart1.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <script>
+    if (sessionStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <header>
+    <h1>Smart Agriculture System</h1>
+    <nav>
+      <a href="login.html">Login</a> 
+      <a href="#home">Home</a>
+      <a href="#obj">Objective</a>
+      <a href="#features">Features</a>
+      <a href="#project">Project Description</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2>Welcome to Smart Agriculture</h2>
+    <h4>We use IoT to optimize farming, improve yield, and monitor crops in real-time.</h4>
+    <img src="smart.jpg" alt="" width="800px" height="400px" style="display: block; margin: auto;">
+  </section>
+  <hr>
+
+  <section id="obj">
+    <h2>Objective</h2>
+    <p>
+      The objective of the Smart Agriculture System is to design and develop an IoT-based solution that automates
+      and optimizes agricultural practices by monitoring real-time environmental parameters such as soil moisture,
+      temperature, and humidity. The system aims to:
+      <br><br>
+      • Enhance crop yield and productivity<br>
+      • Reduce manual labor through automation<br>
+      • Enable data-driven decision-making<br>
+      • Ensure efficient use of water and other resources<br>
+      • Provide remote monitoring and control for farmers<br><br>
+      By integrating sensor networks, microcontrollers, and cloud connectivity, this system facilitates precision farming,
+      promotes sustainability, and empowers farmers with actionable insights for better farm management.
+    </p>
+  </section>
+  <hr>
+
+  <section id="features">
+   
+    <h2>Key Features</h2>
+    <ol>
+      <li>Automatic soil moisture monitoring</li>
+      <li>Automated irrigation based on sensor data</li>
+      <li>Weather forecasting and alerts</li>
+      <li>Real-time data visualization through mobile/web app</li>
+      <li>Low-cost and energy-efficient design</li>
+    </ol>
+
+    <div class="pump-control">
+      <h3>Pump Control</h3>
+
+      <!-- 🔘 Auto/Manual Toggle -->
+      <label class="switch">
+        <input type="checkbox" id="modeToggle">
+        <span class="slider"></span>
+      </label>
+      <p>Mode: <span id="modeText">Automatic</span></p>
+
+      <button id="pumpOn" class="pump-btn on">🚰 Pump ON</button>
+      <button id="pumpOff" class="pump-btn off">🛑 Pump OFF</button>
+      <p>Status: <span id="pumpStatus">--</span></p>
+    </div>
+
+    <div class="sensor-box">
+      <h3>Live Sensor Data</h3>
+      <p>Soil Moisture: <span id="moisture">--</span></p>
+      <p>Temperature: <span id="temperature">--</span>°C</p>
+      <p>Humidity: <span id="humidity">--</span></p>
+    </div>
+  </section>
+  <hr>
+
+  <section id="project" class="project-description">
+    <h2>Project Description</h2>
+    <img src="sas.jpg" alt="Smart Agriculture System Circuit Diagram">
+    <p>
+      This schematic illustrates how the ESP32 microcontroller connects to the DHT11 sensor, soil moisture sensor, and
+      a relay-controlled water pump. Real-time data is sent to an IoT cloud platform, allowing farmers to monitor conditions
+      and automate irrigation remotely. This integration promotes efficiency, smart water use, and better crop outcomes.
+    </p>
+  </section>
+  <hr>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Smart Agriculture System. All rights reserved.</p>
+  </footer>
+
+  <!-- 🔹 FINAL JAVASCRIPT SECTION -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD2sF7atiLJ68r3Gdp_83dVD1KEtshb7jE",
+      authDomain: "smart-agriculture-7888c.firebaseapp.com",
+      databaseURL: "https://smart-agriculture-7888c-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "smart-agriculture-7888c",
+      storageBucket: "smart-agriculture-7888c.firebasestorage.app",
+      messagingSenderId: "198935829215",
+      appId: "1:198935829215:web:00b4d48e72612f500ae76a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Get elements
+    const pumpOnBtn = document.getElementById("pumpOn");
+    const pumpOffBtn = document.getElementById("pumpOff");
+    const pumpStatus = document.getElementById("pumpStatus");
+    const modeToggle = document.getElementById("modeToggle");
+    const modeText = document.getElementById("modeText");
+
+    // ✅ Read sensors
+    onValue(ref(db, "sensors/moisture"), snap => document.getElementById("moisture").innerText = snap.val());
+    onValue(ref(db, "sensors/temperature"), snap => document.getElementById("temperature").innerText = snap.val());
+    onValue(ref(db, "sensors/humidity"), snap => document.getElementById("humidity").innerText = snap.val());
+
+    // ✅ Sync Pump Mode from Firebase (restores after refresh)
+    onValue(ref(db, "pump/mode"), (snapshot) => {
+      const mode = snapshot.val();
+      if (mode === "MANUAL") {
+        modeToggle.checked = true;
+        modeText.innerText = "Manual";
+      } else {
+        modeToggle.checked = false;
+        modeText.innerText = "Automatic";
+      }
+    });
+
+    // ✅ Change Mode (toggle)
+    modeToggle.addEventListener("change", () => {
+      if (modeToggle.checked) {
+        set(ref(db, "pump/mode"), "MANUAL");
+      } else {
+        set(ref(db, "pump/mode"), "AUTO");
+      }
+    });
+
+    // ✅ Manual Buttons (work only if Manual mode is ON)
+    pumpOnBtn.addEventListener("click", () => {
+      if (modeToggle.checked) set(ref(db, "pump/status"), "ON");
+    });
+    pumpOffBtn.addEventListener("click", () => {
+      if (modeToggle.checked) set(ref(db, "pump/status"), "OFF");
+    });
+
+    // ✅ Update Pump Status
+    onValue(ref(db, "pump/status"), (snapshot) => {
+      const status = snapshot.val();
+      pumpStatus.innerText = status;
+      pumpStatus.style.color = (status === "ON") ? "green" : "red";
+    });
+  </script>
+
+</body>
+</html>

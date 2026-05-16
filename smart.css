@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f9f6;
+  color: #333;
+}
+
+header {
+  background-color: #28a745;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+section {
+  padding: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.sensor-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #e9f5ee;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 500px;
+  height: 300px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+form input, form textarea {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+form button {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  background: #eee;
+  padding: 1rem;
+}
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  background: #f3f3f3;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  text-align: center;
+}
+
+.login-container input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 1rem 0;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.login-container button {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#loginMessage {
+  font-weight: bold;
+  margin-top: 10px;
+}
+#home{
+    background-image: url('smart.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#contact{
+  text-align: center;
+}
+form{
+  justify-content: center;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    :root {
+      --bg-color: #f4fbf4;
+      --text-color: #333;
+      --box-bg: #fff;
+      --input-border: #000;
+      --button-bg: #000;
+      --button-text: #fff;
+      --box-shadow-color: #000; /* black shadow for light theme */
+    }
+
+    body.dark {
+      background-image: url('dark theme.jpg');   /* dark theme image */
+      background-size: cover;       /* image poora screen cover kare */
+      background-position: center;  /* image center me rahe */
+      background-repeat: no-repeat;
+      --bg-color: #121212;
+      --text-color: #eee;
+      --box-bg: #1e1e1e;
+      --input-border: #aaa;
+      --button-bg: #aaa;
+      --button-text: #121212;
+      --box-shadow-color: #888; /* gray shadow for dark theme */
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: url('login theme.jpg'); /* yaha image ka path do */
+      background-size: cover;       /* image poora screen cover kare */
+      background-position: center;  /* image center me rahe */
+      background-repeat: no-repeat;
+      color: var(--text-color);
+      font-family: sans-serif;
+      transition: all 0.4s ease;
+    }
+
+    .login-box {
+  background: rgba(255, 255, 255, 0.1); /* transparent background (white with 10% opacity) */
+  backdrop-filter: blur(10px);          /* blur effect */
+  -webkit-backdrop-filter: blur(10px);  /* Safari support */
+  padding: 2rem;
+  max-width: 400px;
+  margin: 100px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px var(--box-shadow-color); /* subtle shadow */
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.2); /* optional soft border */
+}
+
+
+    .login-box h2 {
+      color: var(--text-color);
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input {
+      background: #fff;
+      color: var(--text-color);
+    }
+
+    body.dark input {
+      background: #2a2a2a;
+      color: var(--text-color);
+    }
+
+    input:focus {
+      box-shadow: 0 0 5px var(--box-shadow-color);
+      border-color: var(--input-border);
+    }
+
+    button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 5px var(--box-shadow-color);
+    }
+
+    #error {
+      color: red;
+      text-align: center;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 54px;
+      height: 26px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #6ab8f7;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Enter Username" required>
+      <input type="password" id="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="error"></p>
+  </div>
+
+  <script>
+    // Login validation
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "Yashi" && password === "1234") {
+        sessionStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("error").textContent = "Invalid credentials!";
+      }
+    });
+
+    // Theme toggle
+    const toggle = document.getElementById('toggle');
+
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Load saved theme
+    window.addEventListener('load', () => {
+      const theme = localStorage.getItem('theme');
+      if(theme === 'dark') {
+        document.body.classList.add('dark');
+        toggle.checked = true;
+      }
+    });
+  </script>
+</body>
+</html>
